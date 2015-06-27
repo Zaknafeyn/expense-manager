@@ -1,0 +1,43 @@
+<div class="view-container" ng-controller="addEntryViewCtrl">
+
+    <div>
+        <h3>Add expense</h3>
+    </div>
+
+    <p>This is the partial for {{viewName}}.</p>
+    <div>
+        <div class="row">
+            <span class="heading">Category</span>
+            <span class="heading">Comment</span>
+            <span class="heading">Sum</span>
+        </div>
+        <div ng-repeat="entry in entries">
+            <div class="row">
+                <span>{{categories[entry.category]}}</span>
+                <span>{{entry.comment}}</span>
+                <span>{{entry.sum}}&nbsp;&#8372;</span>
+            </div>
+        </div>
+
+        <h3>Total sum: {{ getTotal() }} &nbsp;&#8372;</h3>
+    </div>
+
+    <hr />
+
+    <form >
+        <label>Select category:
+            <select required ng-model="selectedCategory" ng-options="category for category in categories">
+                <option style="display:none" value="">Select a category</option>
+            </select>
+        </label>
+
+        <label>Provide a comment:
+            <input type="text" ng-model="comment" >
+        </label>
+
+        <label>Paid:
+            <input type="text" ng-model="sum" >
+        </label>
+        <input type="submit" value="Add"/>
+    </form>
+</div>

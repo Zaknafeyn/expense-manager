@@ -26,16 +26,16 @@ describe('my app', function() {
   });
 
 
-  describe('view2', function() {
+  describe('addEntryView', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view2');
+      browser.get('index.html#/addEntryView');
     });
 
 
-    it('should render view2 when user navigates to /view2', function() {
+    it('should render addEntryView when user navigates to /addEntryView', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
+        toMatch(/partial for addEntryView/);
     });
 
   });
