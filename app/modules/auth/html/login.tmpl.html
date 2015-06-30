@@ -1,0 +1,25 @@
+<!--<h2>Expense manager</h2>-->
+<!--<form action="" method="post">-->
+    <!--<input type="hidden" name="request_uri" value="/" />-->
+    <!--<input type="text" name="login" maxlength="250" size="16" value="" /><span class="InputName">&nbsp;Логин</span><br />-->
+    <!--<input type="password" name="password" maxlength="250" size="16" value="" /><span class="InputName">&nbsp;Пароль</span><br />-->
+    <!--<input type="submit" value="Войти" /><br />-->
+<!--</form>-->
+
+
+<div class="alert alert-danger" role="alert" ng-show="invalidLogin">Oh snap! Email and password combination not recognised</div>
+
+<form class="form-signin" role="form" ng-submit="login()">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" ng-model="loginModel.email">
+    <input type="password" class="form-control" placeholder="Password" required="" ng-model="loginModel.password">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">
+        <i class="fa" ng-class="{'fa-cog fa-spin': isBusy, 'fa-sign-in': !isBusy}"></i>
+        <span>Sign in</span>
+    </button>
+</form>
+
+<h3>Logins</h3>
+<p>Admin User: admin@test.com</p>
+<p>Manager User: manager@test.com</p>
+<p>Normal User: user@test.com</p>

@@ -1,0 +1,8 @@
+<div ng-controller="calculationsCtrl" access="User">
+    <h1>Calculations</h1>
+    <div  class="container-fluid" >
+        <div class="row">
+            <a ng-repeat="menuItem in menuItems" href="{{menuItem.link}}" role="button" class="btn {{menuItem.menuClass}}">{{menuItem.text}}</a>
+        </div>
+    </div>
+</div>

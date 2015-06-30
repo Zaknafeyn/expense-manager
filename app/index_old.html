@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="app.css">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+    <script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
+    <!--bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--font awesome-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+</head>
+
+<body ng-controller='mainCtrl'>
+
+<!--<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
+                <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" href="#">Angular Route Authorisation Demo</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+<div class="container-fluid">
+    <div class="row">
+        <!--<div class="col-sm-3 col-md-2 sidebar">-->
+        <!--<ul class="nav nav-sidebar">-->
+        <!--<li class="active"><a href="#/home">Home</a></li>-->
+        <!--<li><a href="#/users">Users <small>(Needs Admin Role)</small></a></li>-->
+        <!--<li><a href="#/home">Some Other Page <small>(Needs Editor Role)</small></a></li>-->
+        <!--<li><a href="#/logout">Logout</a></li>-->
+        <!--</ul>-->
+        <!--</div>-->
+        <div class="col-md-8 col-md-offset-2 main" ng-view="">
+        </div>
+    </div>
+</div>
+
+<hr />
+<ul class="menu">
+    <li><a href="#/view1">view1</a></li>
+    <li><a href="#/addEntryView">addEntryView</a></li>
+</ul>
+
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!--<div ng-view></div>-->
+<div>
+    <span>Name is: {{testName}}</span>
+    <span>Test: {{test}}</span>
+
+</div>
+<div>Angular seed app: v<span app-version></span></div>
+<div>Angular version: v<span version.full></span></div>
+
+<div>
+    <label>Trip year:
+        <select ng-model="selectedYear" ng-options="year for year in years">
+            <option style="display:none" value="">Select a year</option>
+        </select>
+    </label>
+    <span>Selected year: {{selectedYear}}</span>
+    <br/>
+    <label>Select trip:
+        <select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">
+            <option style="display:none" value="">Select a trip</option>
+        </select>
+    </label>
+    <span>Selected trip: {{selectedTrip.name}}</span>
+    <br/>
+    <span>Selected crew: {{selectedDriver}}</span>
+    <label>Select crew:
+        <select ng-model="selectedDriver" ng-options="driver.carName for driver in players | filter:{isDriver:'true'}">
+            <option style="display:none" value="">Select a car</option>
+        </select>
+    </label>
+    <span>Driver: {{selectedTrip.name}}</span>
+    <br/>
+
+    <span>Selected crew: {{selectedDriver1[0].$t}}</span>
+    <label>Select crew:
+        <select ng-model="selectedDriver1" ng-options="driver[0].$t for driver in novaPlayers">
+            <option style="display:none" value="">Select a car owner</option>
+        </select>
+    </label>
+
+    <hr/>
+    <h3>players</h3>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div  ng-repeat="tableHeader in tableHeaders">
+                <div class=" table-header col-md-1">{{tableHeader}}</div>
+            </div>
+        </div>
+
+        <!--<div class="row" ng-repeat="player in novaPlayers" ng-if="$index > 1">-->
+        <div class="row" ng-repeat="player in novaPlayers">
+            <div  ng-repeat="item in player">
+                <div class="table-item col-md-1">{{item.$t}}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+
+<script src="view1/view1.js"></script>
+<script src="addEntryView/addEntryView.js"></script>
+<script src="components/version/version.js"></script>
+<script src="components/version/version-directive.js"></script>
+<script src="components/version/interpolate-filter.js"></script>
+<!--bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="jcs.js"></script>
+
+<script src="modules/core/module.core.js"></script>
+<script src="modules/core/services/eventbus.js"></script>
+
+
+
+<script src="modules/auth/module.auth.js"></script>
+<script src="modules/auth/module.auth.routes.js"></script>
+<script src="modules/auth/services/authentication.js"></script>
+<script src="modules/auth/services/authorization.js"></script>
+<script src="modules/auth/controllers/loginCtrl.js"></script>
+<script src="modules/auth/directives/access.js"></script>
+<script src="modules/auth/module.auth.run.js"></script>
+
+<script src="modules/pages/module.pages.js"></script>
+<script src="modules/pages/module.pages.routes.js"></script>
+<script src="modules/pages/controllers/defaultCtrl.js"></script>
+
+<script src="app.js"></script>
+
+<!--<script src=""></script>-->
+<!--<script src=""></script>-->
+<!--<script src=""></script>-->
+</body>
+</html>

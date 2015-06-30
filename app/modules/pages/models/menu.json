@@ -1,0 +1,12 @@
+[
+    {
+        "name": "tripExpense",
+        "text": "$",
+        "link": "#tripExpense"
+    },
+    {
+        "name": "calculations",
+        "text": "Calculations",
+        "link": "#/calculations"
+    }
+]

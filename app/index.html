@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
+    <title>Expense manager</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -23,14 +23,16 @@
     <script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
     <!--bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!--font awesome-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
+
+    <!--<script type="text/javascript">-->
+        <!--angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));-->
+    <!--</script>-->
 </head>
 
 <body ng-controller='mainCtrl'>
-<ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/addEntryView">addEntryView</a></li>
-</ul>
 
 
 <!--[if lt IE 7]>
@@ -38,78 +40,36 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div ng-view></div>
-<div>
-    <span>Name is: {{testName}}</span>
-    <span>Test: {{test}}</span>
-
-</div>
-<div>Angular seed app: v<span app-version></span></div>
-<div>Angular version: v<span version.full></span></div>
-
-<div>
-    <label>Trip year:
-        <select ng-model="selectedYear" ng-options="year for year in years">
-            <option style="display:none" value="">Select a year</option>
-        </select>
-    </label>
-    <span>Selected year: {{selectedYear}}</span>
-    <br/>
-    <label>Select trip:
-        <select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">
-            <option style="display:none" value="">Select a trip</option>
-        </select>
-    </label>
-    <span>Selected trip: {{selectedTrip.name}}</span>
-    <br/>
-    <span>Selected crew: {{selectedDriver}}</span>
-    <label>Select crew:
-        <select ng-model="selectedDriver" ng-options="driver.carName for driver in players | filter:{isDriver:'true'}">
-            <option style="display:none" value="">Select a car</option>
-        </select>
-    </label>
-    <span>Driver: {{selectedTrip.name}}</span>
-    <br/>
-    <span>Selected crew: {{selectedDriver}}</span>
-    <label>Select crew:
-        <select ng-model="selectedDriver" ng-options="driver.carName for driver in players | filter:{isDriver:'true'}">
-            <option style="display:none" value="">Select a car</option>
-        </select>
-    </label>
-    <span>Driver: {{selectedTrip.name}}</span>
-
-    <hr/>
-    <h3>players</h3>
-
+<!--nav bar-->
+<nav class="navbar navbar-default">
     <div class="container-fluid">
-        <div class="row">
-            <div  ng-repeat="tableHeader in tableHeaders">
-                <div class=" table-header col-md-1">{{tableHeader}}</div>
-            </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/app">
+                <img class="brand-image" alt="Brand" src="http://nova-ultimate.com/graphics/logotype.png">
+            </a>
         </div>
+        <p class="navbar-text navbar-right login-link"><a href="#/login" class="navbar-link">Login</a></p>
+        <p class="navbar-text navbar-right login-link"><a href="#/login" class="navbar-link">User name is: {{userName.name}}</a></p>
+    </div>
+</nav>
+<!--nav bar-->
 
-        <!--<div class="row" ng-repeat="player in novaPlayers" ng-if="$index > 1">-->
-        <div class="row" ng-repeat="player in novaPlayers">
-            <div  ng-repeat="item in player">
-                <div class="table-item col-md-1">{{item.$t}}</div>
-
-                <!--<span>{{player.gsx$_cn6ca}}</span>-->
-                <!--<span>{{player.gsx$фио}}</span>-->
-                <!--<span>{{player.gsx$_cpzh4}}</span>-->
-                <!--<span>{{player.gsx$размер}}</span>-->
-                <!--<span>{{player.gsx$надписьнафутболке}}</span>-->
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 main" ng-view="">
         </div>
     </div>
 </div>
-
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
-<script src="app.js"></script>
+
+<!--<script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>-->
+
+
 <script src="view1/view1.js"></script>
 <script src="addEntryView/addEntryView.js"></script>
 <script src="components/version/version.js"></script>
@@ -117,5 +77,32 @@
 <script src="components/version/interpolate-filter.js"></script>
 <!--bootstrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script src="jcs.js"></script>
+
+<script src="modules/core/module.core.js"></script>
+<script src="modules/core/services/eventbus.js"></script>
+
+
+<script src="modules/auth/module.auth.js"></script>
+<script src="modules/auth/module.auth.routes.js"></script>
+<script src="modules/auth/services/authentication.js"></script>
+<script src="modules/auth/services/authorization.js"></script>
+<script src="modules/auth/controllers/loginCtrl.js"></script>
+<script src="modules/auth/directives/access.js"></script>
+<script src="modules/auth/module.auth.run.js"></script>
+
+<script src="modules/pages/module.pages.js"></script>
+<script src="modules/pages/module.pages.routes.js"></script>
+<script src="modules/pages/controllers/defaultCtrl.js"></script>
+
+<script src="modules/pages/controllers/tripExpenseCtrl.js"></script>
+<script src="modules/pages/controllers/calculationsCtrl.js"></script>
+
+<script src="app.js"></script>
+
+<!--<script src=""></script>-->
+<!--<script src=""></script>-->
+<!--<script src=""></script>-->
 </body>
 </html>

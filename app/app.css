@@ -40,3 +40,19 @@ div.table-header {
 div.view-container {
     padding: 10px;
 }
+
+/*<login form*/
+.login-form {
+    margin-bottom:5px;
+}
+/*<login form*/
+
+/*navbar*/
+.brand-image {
+    width: 40px;
+}
+
+.login-link {
+    margin-right: 20px !important;
+}
+/*navbar*/
