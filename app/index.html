@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
     <link rel="stylesheet" href="app.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <!--<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>-->
 
     <script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
     <!--bootstrap -->
@@ -48,15 +48,18 @@
                 <img class="brand-image" alt="Brand" src="http://nova-ultimate.com/graphics/logotype.png">
             </a>
         </div>
-        <p class="navbar-text navbar-right login-link"><a href="#/login" class="navbar-link">Login</a></p>
-        <p class="navbar-text navbar-right login-link"><a href="#/login" class="navbar-link">User name is: {{userName.name}}</a></p>
+
+        <!--ng-show="loggedIn"-->
+        <p ng-show="!loggedIn" class="navbar-text navbar-right login-link"><a href="#/login" class="navbar-link">Login</a></p>
+        <p ng-show="loggedIn" class="navbar-text navbar-right login-link"><a href="#/login" ng-click="logout()" class="navbar-link">Log out</a></p>
+        <p ng-show="loggedIn" class="navbar-text navbar-right login-link"><a href="#/profile" class="navbar-link">{{currentUser}}</a></p>
     </div>
 </nav>
 <!--nav bar-->
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2 main" ng-view="">
+        <div class="center-block main" ng-view>
         </div>
     </div>
 </div>
@@ -69,6 +72,7 @@
 
 <!--<script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>-->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.5/ngStorage.min.js"></script>
 
 <script src="view1/view1.js"></script>
 <script src="addEntryView/addEntryView.js"></script>
@@ -88,18 +92,24 @@
 <script src="modules/auth/module.auth.routes.js"></script>
 <script src="modules/auth/services/authentication.js"></script>
 <script src="modules/auth/services/authorization.js"></script>
+<script src="modules/auth/services/storage.js"></script>
+
+<script src="modules/auth/services/loginProvider.js"></script>
+
 <script src="modules/auth/controllers/loginCtrl.js"></script>
 <script src="modules/auth/directives/access.js"></script>
 <script src="modules/auth/module.auth.run.js"></script>
 
 <script src="modules/pages/module.pages.js"></script>
 <script src="modules/pages/module.pages.routes.js"></script>
-<script src="modules/pages/controllers/defaultCtrl.js"></script>
 
+<script src="modules/pages/controllers/defaultCtrl.js"></script>
 <script src="modules/pages/controllers/tripExpenseCtrl.js"></script>
 <script src="modules/pages/controllers/calculationsCtrl.js"></script>
+<script src="modules/pages/controllers/profileCtrl.js"></script>
 
 <script src="app.js"></script>
+<script src="modules/app/app.run.js"></script>
 
 <!--<script src=""></script>-->
 <!--<script src=""></script>-->

@@ -3,26 +3,37 @@
 
     // Declare app level module which depends on views, and components
     var myApp = angular.module(jcs.modules.app.name, [
-        //'ngRoute',
-//        'ui.router',
+        "ngStorage",
         jcs.modules.app.router,
         'myApp.view1',
         'myApp.addEntryView',
-        'myApp.version',
+//        'myApp.version',
         jcs.modules.auth.name,
         jcs.modules.core.name,
         jcs.modules.pages.name
     ]);
 
-    myApp.config(['$routeProvider', function($routeProvider) {
-              $routeProvider.otherwise({redirectTo: '/home'});
-        }]);
+    myApp.controller('mainCtrl', function($scope, $http, authentication, storage){
 
-    myApp.controller('mainCtrl', function($scope, $http, authentication){
+        // initial state
+        $scope.loggedIn = authentication.isLoggedInUser();
+        if ($scope.loggedIn)
+            $scope.currentUser = storage.getCurrentUser().name;
 
-        $scope.userName = authentication.getCurrentLoginUser();
+        $scope.logout = function() {
+            console.log("Logging out");
+            authentication.logout();
+        };
 
-//        console.log("user name is:" +  $scope.userName);
+        $scope.$on(jcs.modules.auth.events.userLoggedOut, function(){
+            $scope.loggedIn = false;
+            $scope.currentUser = "";
+        });
+
+        $scope.$on(jcs.modules.auth.events.userLoggedIn, function(e, user){
+            $scope.loggedIn = true;
+            $scope.currentUser = user.name;
+        });
 
         $scope.testName = "Test name";
 
@@ -103,7 +114,7 @@
             }
         ];
 
-        $scope.selectedPlayer =$scope.players[0];
+        $scope.selectedPlayer = $scope.players[0];
         $scope.selectedDriver = null;
 
         $http.get('models/headers.json').

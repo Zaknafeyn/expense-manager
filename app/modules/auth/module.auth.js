@@ -1,6 +1,3 @@
-/**
- * Created by Valik on 6/27/15.
- */
 (function (angular, jcs) {
     'use strict';
 
@@ -18,15 +15,16 @@
             }
         },
         events: {
-            userLoggedIn: 'auth:user:loggedIn',
-            userLoggedOut: 'auth:user:loggedOut'
+            userLoggedIn: 'global:user:loggedIn',
+            userLoggedOut: 'global:user:loggedOut'
         },
         controllers: {
             login: 'loginCtrl'
         },
         services: {
             authentication: 'authentication',
-            authorization: 'authorization'
+            authorization: 'authorization',
+            storage: 'storage'
         },
         routes: {
             login: '/login',

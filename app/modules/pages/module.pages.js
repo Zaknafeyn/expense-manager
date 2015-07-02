@@ -9,21 +9,25 @@
         controllers: {
             default: 'defaultCtrl',
             tripExpense: 'tripExpenseCtrl',
-            calculations: 'calculationsCtrl'
+            calculations: 'calculationsCtrl',
+            profile: 'profileCtrl'
         },
         routes: {
             home: '/home',
             tripExpense: '/tripExpense',
-            calculations: '/calculations'
+            calculations: '/calculations',
+            profile: '/profile'
         },
         templates: {
             home: 'modules/pages/html/home.tmpl.html',
             tripExpense: 'modules/pages/html/tripExpense.tmpl.html',
-            calculations: 'modules/pages/html/calculations.tmpl.html'
+            calculations: 'modules/pages/html/calculations.tmpl.html',
+            profile: 'modules/pages/html/profile.tmpl.html'
         },
         models :{
             trips : 'modules/pages/models/trips.json',
-            menu : 'modules/pages/models/menu.json'
+            menu : 'modules/pages/models/menu.json',
+            tempProfiles: 'modules/pages/models/temp.profiles.json'
         },
         common : {
             getMenu : function (name, http, callback){

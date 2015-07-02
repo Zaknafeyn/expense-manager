@@ -6,6 +6,15 @@
         '$location',
         jcs.modules.auth.services.authentication,
         function ($scope, $location, authentication) {
+
+            var isLoggedIn = authentication.isLoggedInUser();
+            if (isLoggedIn){
+                console.log("User is logged in");
+                console.log("Jump to %s", jcs.modules.pages.routes.calculations);
+//                window.location.href = jcs.modules.pages.routes.calculations;
+                return;
+            }
+
             $scope.loginModel = {};
             $scope.isBusy = false;
             $scope.invalidLogin = false;
@@ -21,7 +30,6 @@
                 })['finally'](function () {
                     $scope.isBusy = false;
                 });
-
             };
         }
     ]);

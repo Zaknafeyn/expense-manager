@@ -1,0 +1,36 @@
+<div ng-controller="profileCtrl">
+    <div class="row">
+    <form role="form" ng-submit="updateProfile()">
+        <div class="form-group">
+            <label class="control-label">
+                Name, surname:
+            <input ng-model="currentProfile.name" class="form-control" name="fullName" type="text" placeholder="Name Surname" required />
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Login:
+                <input ng-model="currentProfile.login" class="form-control" name="loginName" type="text" placeholder="Login" required />
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                E-mail address:
+                <input ng-model="currentProfile.email" class="form-control" name="email" type="text" placeholder="sample@sample.com" required />
+            </label>
+        </div>
+        <div class="form-group">
+            <div >
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="currentProfile.hasCar" name="hasCar" type="checkbox" required> I have a car
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary btn-sm">Update profile</button>
+        </div>
+    </form>
+    </div>
+</div>

@@ -16,7 +16,7 @@
                 templateUrl: 'modules/auth/html/not-authorised.tmpl.html'
             });
 
-            $routeProvider.otherwise({ redirectTo: jcs.modules.auth.routes.login });
+//            $routeProvider.otherwise({ redirectTo: jcs.modules.auth.routes.login });
         }]);
 
 
