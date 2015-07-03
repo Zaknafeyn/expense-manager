@@ -29,6 +29,9 @@
             menu : 'modules/pages/models/menu.json',
             tempProfiles: 'modules/pages/models/temp.profiles.json'
         },
+        api: {
+            profiles: 'http://expense-manager-backend.azurewebsites.net/api/profiles'
+        },
         common : {
             getMenu : function (name, http, callback){
                 var menuList = [];
