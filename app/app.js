@@ -10,10 +10,11 @@
 //        'myApp.version',
         jcs.modules.auth.name,
         jcs.modules.core.name,
-        jcs.modules.pages.name
+        jcs.modules.pages.name,
+        'angular-md5'
     ]);
 
-    myApp.controller('mainCtrl', function($scope, $http, authentication, storage){
+    myApp.controller('mainCtrl', function($scope, $http, authentication, storage, eventbus){
 
         // initial state
         $scope.loggedIn = authentication.isLoggedInUser();
@@ -25,15 +26,20 @@
             authentication.logout();
         };
 
-        $scope.$on(jcs.modules.auth.events.userLoggedOut, function(){
-            $scope.loggedIn = false;
+        //start events subscription section
+        eventbus.subscribe(jcs.modules.auth.events.userLoggedIn, function(e, user){
+            console.log("Login Event caught")
+            $scope.loggedIn = authentication.isLoggedInUser();
+            $scope.currentUser = user.name;
+        });
+
+        eventbus.subscribe(jcs.modules.auth.events.userLoggedOut, function(){
+            console.log("Logout Event caught");
+            $scope.loggedIn = authentication.isLoggedInUser();
             $scope.currentUser = "";
         });
 
-        $scope.$on(jcs.modules.auth.events.userLoggedIn, function(e, user){
-            $scope.loggedIn = true;
-            $scope.currentUser = user.name;
-        });
+        //end events subscription section
 
         $scope.testName = "Test name";
 

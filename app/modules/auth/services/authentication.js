@@ -30,6 +30,8 @@
                     else {
                         var profilePromise = loginProvider.getProfile(email, password);
                         profilePromise.then(function(profile){
+                            if (profile == undefined)
+                                defer.reject('Unknown Username / Password combination');
                             currentUser = createUser(profile.name, ['Admin']);
                             defer.resolve(currentUser);
                             raiseEvent(jcs.modules.auth.events.userLoggedIn, currentUser);
@@ -79,10 +81,9 @@
                 };
 
             var raiseEvent = function(name, data){
-//                eventbus.broadcast(name, data);
+               eventbus.broadcast(name, data);
 //                $rootScope.$broadcast(name, data);
-                $rootScope.$emit(name, data);
-//                eventbus.broadcast(name, data);
+                // $rootScope.$emit(name, data);
             };
 
             return {

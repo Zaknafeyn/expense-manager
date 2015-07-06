@@ -20,7 +20,6 @@
                     return;
                 }
 
-                return;
                 var authorised;
                 if (routeChangeRequiredAfterLogin && next.originalPath !== jcs.modules.auth.routes.login) {
                     routeChangeRequiredAfterLogin = false;
@@ -37,6 +36,7 @@
                         $location.path(jcs.modules.auth.routes.notAuthorised).replace();
                     }
                 }
+                console.log("Authorized type: %O", authorised);
             });
 
             $rootScope.$on(jcs.modules.auth.events.userLoggedOut, function(){

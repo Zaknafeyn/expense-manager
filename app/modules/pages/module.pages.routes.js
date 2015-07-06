@@ -12,7 +12,7 @@
                 controller: jcs.modules.pages.controllers.default,
                 templateUrl: jcs.modules.pages.templates.home,
                 access: {
-                    loginRequired: false
+                    loginRequired: true
                 }
             }).when(jcs.modules.pages.routes.tripExpense, {
                 controller: jcs.modules.pages.controllers.tripExpense,

@@ -1,12 +1,10 @@
-/**
- * Created by Valik on 6/28/15.
- */
 (function (angular, jcs) {
     'use strict';
 
     angular.module(jcs.modules.auth.name).directive('access', [
         jcs.modules.auth.services.authorization,
         function (authorization) {
+            console.log("Checking access directive");
             return {
                 restrict: 'A',
                 link: function (scope, element, attrs) {

@@ -6,7 +6,6 @@
         '$location',
         jcs.modules.auth.services.authentication,
         function ($scope, $location, authentication) {
-
             var isLoggedIn = authentication.isLoggedInUser();
             if (isLoggedIn){
                 console.log("User is logged in");
