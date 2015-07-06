@@ -30,13 +30,46 @@
                         });
                     return defer.promise;
                 },
+                getProfileUrl = function(id){
+                    return "http://expense-manager-backend.azurewebsites.net/api/profiles/" + id;
+                },
                 getProfile = function(login, password) {
                     return loadData(login, password).then(function(profile){
                         return profile;
                     });
+                },
+                getProfileById = function(id) {
+                    var defer = $q.defer();
+
+                    $http.get(getProfileUrl(id)).
+                        success(function(data, status, headers, config) {
+                            defer.resolve(data);
+                        }).
+                        error(function(data, status, headers, config) {
+                            // log error
+                            console.log("Cannot retrieve profile data fro id " + id);
+                            defer.reject('Cannot retrieve data from service');
+                        });
+                    return defer.promise;
+                },
+                updateProfile = function(profile) {
+                    var defer = $q.defer();
+
+                    $http.post("http://expense-manager-backend.azurewebsites.net/api/profiles/", JSON.stringify(profile)).
+                        success(function(data, status, headers, config) {
+                            defer.resolve();
+                        }).
+                        error(function(data, status, headers, config) {
+                            // log error
+                            console.log("Cannot retrieve profile data fro id " + id);
+                            defer.reject('Cannot post data to service');
+                        });
+                    return defer.promise;
                 };
             return {
-                getProfile : getProfile
+                getProfile : getProfile,
+                getProfileById : getProfileById,
+                updateProfile : updateProfile
             }
         }])
 }(angular, jcs));

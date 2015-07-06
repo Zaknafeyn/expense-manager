@@ -13,7 +13,9 @@
     "html5-boilerplate": "~5.2.0",
     "angularfire": "~0.7.1",
     "jquery": "1.11.1",
-    "angular-md5": "~0.1.7"
+    "angular-md5": "~0.1.7",
+    "toastr": "~2.1.1",
+    "ngtoast": "~1.5.4"
   },
   "resolutions": {
     "angular": "1.4.1"

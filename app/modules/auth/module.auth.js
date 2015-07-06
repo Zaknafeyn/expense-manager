@@ -15,8 +15,8 @@
             }
         },
         events: {
-            userLoggedIn: 'global:user:loggedIn',
-            userLoggedOut: 'global:user:loggedOut'
+            userLoggedIn: 'auth:user:loggedIn',
+            userLoggedOut: 'auth:user:loggedOut'
         },
         controllers: {
             login: 'loginCtrl'

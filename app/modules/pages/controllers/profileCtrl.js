@@ -4,18 +4,30 @@
     angular.module(jcs.modules.pages.name)
         .controller(jcs.modules.pages.controllers.profile, [
             '$scope',
-            'storage',
-            function ($scope, storage) {
-                $scope.currentProfile = {
-                    "login": "admin@test.com",
-                    "password": "admin@test.com",
-                    "email": "admin@test.com",
-                    "name": "Admin User - from file",
-                    "hasCar" : "true"
-                };
+            'authentication',
+            'loginProvider',
+            'ngToast',
+            'eventbus',
+            function ($scope, authentication, loginProvider, ngToast, eventbus) {
+                var currentUser = authentication.getCurrentLoginUser();
+                console.log("Current user id %s", currentUser);
+                loginProvider.getProfileById(currentUser.id).then(function(profile){
+                    console.log("Current user profile %O", profile);
+                    $scope.currentProfile = profile;
+                });
 
                 $scope.updateProfile = function(){
-                    console.log("Store profile %O to DB.", $scope.currentProfile);
+                    loginProvider.updateProfile($scope.currentProfile).then(function(){
+                        eventbus.broadcast(jcs.modules.pages.events.profileUpdated, $scope.currentProfile);
+                    });
+
+                    var tost = ngToast.create({
+                        className: 'info',
+                        content: 'Profile updated successfully',
+                        dismissOnTimeout : true,
+                        timeout : 4000,
+                        dismissButton : true
+                    });
                 };
             }
         ]);

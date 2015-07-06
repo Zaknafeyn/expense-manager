@@ -2,7 +2,7 @@
     {
         "name": "tripExpense",
         "text": "$",
-        "link": "#tripExpense"
+        "link": "#/tripExpense"
     },
     {
         "name": "calculations",

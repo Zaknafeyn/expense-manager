@@ -32,6 +32,9 @@
         api: {
             profiles: 'http://expense-manager-backend.azurewebsites.net/api/profiles'
         },
+        events : {
+            profileUpdated : "pages:profile:profileUpdated"
+        },
         common : {
             getMenu : function (name, http, callback){
                 var menuList = [];

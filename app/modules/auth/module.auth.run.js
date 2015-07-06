@@ -12,6 +12,9 @@
             $rootScope.$on('$routeChangeStart', function (event, next) {
                 var loggedIn = $sessionStorage.user != undefined;
 
+                if (loggedIn)
+                    return;
+                
                 var nextOriginalPath = next.originalPath;
 
                 if (nextOriginalPath == jcs.modules.auth.routes.login && loggedIn)
@@ -21,10 +24,11 @@
                 }
 
                 var authorised;
-                if (routeChangeRequiredAfterLogin && next.originalPath !== jcs.modules.auth.routes.login) {
+                console.log("checking route ... ");
+                /*if (routeChangeRequiredAfterLogin && next.originalPath !== jcs.modules.auth.routes.login) {
                     routeChangeRequiredAfterLogin = false;
                     $location.path(loginRedirectUrl).replace();
-                } else if (next.access !== undefined) {
+                } else*/ if (next.access !== undefined) {
                     authorised = authorization.authorize(next.access.loginRequired,
                         next.access.permissions,
                         next.access.permissionCheckType);

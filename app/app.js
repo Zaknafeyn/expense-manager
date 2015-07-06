@@ -11,7 +11,8 @@
         jcs.modules.auth.name,
         jcs.modules.core.name,
         jcs.modules.pages.name,
-        'angular-md5'
+        'angular-md5',
+        'ngToast'
     ]);
 
     myApp.controller('mainCtrl', function($scope, $http, authentication, storage, eventbus){
@@ -37,6 +38,10 @@
             console.log("Logout Event caught");
             $scope.loggedIn = authentication.isLoggedInUser();
             $scope.currentUser = "";
+        });
+
+        eventbus.subscribe(jcs.modules.pages.events.profileUpdated, function(e, updatedProfile){
+            $scope.currentUser = updatedProfile.name;
         });
 
         //end events subscription section

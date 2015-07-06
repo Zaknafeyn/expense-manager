@@ -11,8 +11,9 @@
         "loginProvider",
         function ($q, $timeout, $http, $rootScope, eventbus, storage, loginProvider ) {
             var currentUser,
-                createUser = function (name, permissions) {
+                createUser = function (id, name, permissions) {
                     var newUser = {
+                        id: id,
                         name: name,
                         permissions: permissions
                     };
@@ -32,7 +33,7 @@
                         profilePromise.then(function(profile){
                             if (profile == undefined)
                                 defer.reject('Unknown Username / Password combination');
-                            currentUser = createUser(profile.name, ['Admin']);
+                            currentUser = createUser(profile.id, profile.name, ['Admin']);
                             defer.resolve(currentUser);
                             raiseEvent(jcs.modules.auth.events.userLoggedIn, currentUser);
                         });
@@ -77,13 +78,13 @@
                     return result;
                 },
                 getCurrentLoginUser = function () {
+                    if (currentUser == undefined)
+                        currentUser = storage.getCurrentUser();
                     return currentUser;
                 };
 
             var raiseEvent = function(name, data){
                eventbus.broadcast(name, data);
-//                $rootScope.$broadcast(name, data);
-                // $rootScope.$emit(name, data);
             };
 
             return {
