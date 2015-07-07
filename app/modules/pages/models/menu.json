@@ -1,12 +1,20 @@
 [
     {
-        "name": "tripExpense",
-        "text": "$",
-        "link": "#/tripExpense"
+      "name": "tripExpense",
+      "icon": "fa-usd",
+      "text" : "Expenses",
+      "link": "#/tripExpense"
     },
     {
-        "name": "calculations",
-        "text": "Calculations",
-        "link": "#/calculations"
+      "name": "calculations",
+      "icon": "fa-calculator",
+      "text": "Calculations",
+      "link": "#/calculations"
+    },
+    {
+      "name": "crew",
+      "icon": "fa-car",
+      "text": "Crew",
+      "link": "#/crew"
     }
 ]

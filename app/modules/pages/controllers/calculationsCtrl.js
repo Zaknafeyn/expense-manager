@@ -1,6 +1,3 @@
-/**
- * Created by Valik on 6/29/15.
- */
 (function (angular, jcs) {
     'use strict';
 
@@ -10,6 +7,7 @@
             '$http',
             function ($scope, $http) {
                 var name = "calculations";
+                $scope.pageHeader = "Calculations";
 
                 jcs.modules.pages.common.getMenu(name, $http, function(list){
                     $scope.menuItems = list;

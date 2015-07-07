@@ -1,35 +1,46 @@
 <div ng-controller="profileCtrl">
     <div class="row">
     <form role="form" ng-submit="updateProfile()">
-        <div class="form-group">
+        <div class="form-group-compact">
             <label class="control-label">
                 Name, surname:
             <input ng-model="currentProfile.name" class="form-control" name="fullName" type="text" placeholder="Name Surname" required />
             </label>
         </div>
-        <div class="form-group">
+        <div class="form-group-compact">
             <label>
                 Login:
                 <input ng-model="currentProfile.login" class="form-control" name="loginName" type="text" placeholder="Login" required />
             </label>
         </div>
-        <div class="form-group">
+        <div class="form-group-compact">
             <label>
                 E-mail address:
                 <input ng-model="currentProfile.email" class="form-control" name="email" type="text" placeholder="sample@sample.com" required />
             </label>
         </div>
-        <div class="form-group">
+        <div class="form-group-compact">
             <div >
                 <div class="checkbox">
                     <label>
-                        <input ng-model="currentProfile.hasCar" name="hasCar" type="checkbox"> I have a car
+                        <input ng-model="currentProfile.hasCar" ng-change="hasCarChanged(currentProfile.hasCar)" name="hasCar" type="checkbox"> I have a car
                     </label>
                 </div>
             </div>
         </div>
+        <div class="form-group-compact" ng-show="currentProfile.hasCar">
+            <label>
+                Car name:
+                <input ng-model="currentProfile.carName" class="form-control" name="carName" type="text" placeholder="Car name e.g. Yoslik"/>
+            </label>
+        </div>
         <div>
-            <button type="submit" class="btn btn-primary btn-sm">Update profile</button>
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="fa" ng-class="{'fa-cog fa-spin': isBusy, '': !isBusy}"></i>
+                <span>Update profile</span>
+            </button>
+
+            <button type="button" ng-click="cancelEdit()" class="btn btn-default btn-sm">Cancel</button>
         </div>
     </form>
     </div>

@@ -10,6 +10,13 @@
             '$http',
             function ($scope, $http) {
 
+                $scope.pageHeader = "Expense manager";
+
+                jcs.modules.pages.common.getMenu(name, $http, function(list){
+                    $scope.menuItems = list;
+                    console.log($scope.menuItems);
+                });
+
                 $scope.showExpenseFlag = true;
                 $scope.showCalculationFlag = false;
 

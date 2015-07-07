@@ -10,15 +10,32 @@
             'eventbus',
             function ($scope, authentication, loginProvider, ngToast, eventbus) {
                 var currentUser = authentication.getCurrentLoginUser();
-                console.log("Current user id %s", currentUser);
                 loginProvider.getProfileById(currentUser.id).then(function(profile){
-                    console.log("Current user profile %O", profile);
                     $scope.currentProfile = profile;
                 });
 
+                $scope.cancelEdit = function(){
+                    var currentUser = authentication.getCurrentLoginUser();
+                    loginProvider.getProfileById(currentUser.id).then(function(profile){
+                        $scope.currentProfile = profile;
+                    });
+                };
+
+                $scope.hasCarChanged = function(value){
+                    console.log("Changed. Current value: %s", value);
+                    if (value)
+                    {
+                        $scope.currentProfile.carName = "";
+                    }
+                }
+
+                $scope.isBusy = false;
                 $scope.updateProfile = function(){
+                    $scope.isBusy = true;
                     loginProvider.updateProfile($scope.currentProfile).then(function(){
                         eventbus.broadcast(jcs.modules.pages.events.profileUpdated, $scope.currentProfile);
+                    })['finally'](function () {
+                        $scope.isBusy = false;
                     });
 
                     var tost = ngToast.create({

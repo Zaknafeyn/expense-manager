@@ -5,12 +5,15 @@
         '$rootScope',
         '$location',
         '$sessionStorage',
+        'storage',
+        'eventbus',
         jcs.modules.auth.services.authorization,
-        function ($rootScope, $location, $sessionStorage, authorization) {
+        function ($rootScope, $location, $sessionStorage, authorization, storage, eventbus) {
             var routeChangeRequiredAfterLogin = false,
                 loginRedirectUrl;
             $rootScope.$on('$routeChangeStart', function (event, next) {
                 var loggedIn = $sessionStorage.user != undefined;
+                //var loggedIn = storage.getCurrentUser() != undefined;
 
                 if (loggedIn)
                     return;
@@ -40,16 +43,25 @@
                         $location.path(jcs.modules.auth.routes.notAuthorised).replace();
                     }
                 }
-                console.log("Authorized type: %O", authorised);
             });
 
             $rootScope.$on(jcs.modules.auth.events.userLoggedOut, function(){
                 delete $sessionStorage.user;
+                //storage.deleteUser();
             });
 
             $rootScope.$on(jcs.modules.auth.events.userLoggedIn, function(e, user){
                 // add user to storage
-                console.log("data %O, data2 - %O", e, user);
+                //storage.storeUser(user);
+                $sessionStorage.user = user;
             });
+
+            $rootScope.$on(jcs.modules.pages.events.profileUpdated, function(e, profile){
+            //eventbus.subscribe(jcs.modules.pages.events.profileUpdated, function(e, profile){
+                // update user name
+                //storage.updateUser(profile.name);
+                $sessionStorage.user.name = profile.name;
+            });
+
         }]);
 }(angular, jcs));

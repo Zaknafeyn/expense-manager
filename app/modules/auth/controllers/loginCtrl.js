@@ -9,8 +9,6 @@
             var isLoggedIn = authentication.isLoggedInUser();
             if (isLoggedIn){
                 console.log("User is logged in");
-                console.log("Jump to %s", jcs.modules.pages.routes.calculations);
-//                window.location.href = jcs.modules.pages.routes.calculations;
                 return;
             }
 
@@ -21,7 +19,7 @@
             $scope.login = function () {
                 $scope.invalidLogin = false;
                 $scope.isBusy = true;
-                authentication.login($scope.loginModel.email, $scope.loginModel.password)
+                authentication.login($scope.loginModel.login, $scope.loginModel.password)
                 .then(function () {
                     $location.path(jcs.modules.pages.routes.home);
                 }, function () {

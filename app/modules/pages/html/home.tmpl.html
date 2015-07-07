@@ -1,4 +1,25 @@
-<h1>Expense manager</h1>
+<div ng-controller="defaultCtrl">
+    <h2>{{pageHeader}}</h2>
+    <div  class="container-fluid">
+        <div class="row">
+            <a ng-repeat="menuItem in menuItems" href="{{menuItem.link}}" role="button" class="btn {{menuItem.menuClass}}">
+                <i class="fa {{menuItem.icon}}"></i>
+                <span>{{menuItem.text}}</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div ng-show="showExpenseFlag">
+            <h1>Expenses</h1>
+        </div>
+
+        <div ng-show="showCalculationFlag">
+            <h1>Calculation</h1>
+        </div>
+    </div>
+
+</div>
 
 <p>
     <a href="#/users">This link requires the user to have admin permissions</a>
@@ -13,20 +34,3 @@
 <p>
     You will see this button if you are a Admin User: <a class="btn btn-primary" access="Admin">Can You See Me?</a>
 </p>
-
-<div ng-controller="defaultCtrl">
-    <div  class="container-fluid">
-        <div class="row">
-            <a href="#/tripExpense" role="button" class="btn btn-default">$</a>
-            <a href="#/calculations" role="button" class="btn btn-default">Calculation</a>
-        </div>
-    </div>
-
-    <div ng-show="showExpenseFlag">
-        <h1>Expenses</h1>
-    </div>
-
-    <div ng-show="showCalculationFlag">
-        <h1>Calculation</h1>
-    </div>
-</div>

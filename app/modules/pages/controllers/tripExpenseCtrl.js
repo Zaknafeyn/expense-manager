@@ -10,14 +10,12 @@
             '$http',
             function ($scope, $http) {
                 var name = "tripExpense";
+                $scope.pageHeader = "Trip expenses";
 
                 jcs.modules.pages.common.getMenu(name, $http, function(list){
                     $scope.menuItems = list;
                     console.log($scope.menuItems);
                 });
-
-                $scope.showExpenseFlag = true;
-                $scope.showCalculationFlag = false;
 
                 $scope.years = [2010, 2011, 2012, 2013, 2014, 2015];
                 $scope.selectedYear = $scope.years[0]; // 2010
@@ -32,17 +30,6 @@
                     });
 
                 $scope.selectedTrip = $scope.trips[0];
-
-                $scope.showExpenses = function() {
-                    $scope.showExpenseFlag = true;
-                    $scope.showCalculationFlag = false;
-                };
-
-                $scope.showCalculations = function() {
-                    $scope.showExpenseFlag = false;
-                    $scope.showCalculationFlag = true;
-                };
-
             }
         ]);
 }(angular, jcs));

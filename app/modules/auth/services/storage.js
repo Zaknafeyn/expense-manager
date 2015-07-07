@@ -6,7 +6,6 @@
         function ($sessionStorage) {
             var storeUser = function (user) {
                     $sessionStorage.user = user;
-                    console.log("Value from local storage:" + $sessionStorage.user.name);
 
                     return user;
                 },
@@ -18,12 +17,16 @@
                 },
                 deleteUser = function () {
                     delete $sessionStorage.user;
+                },
+                updateUser = function(name) {
+                    $sessionStorage.user.name = name;
                 };
 
             return {
                 storeUser: storeUser,
                 getCurrentUser: getCurrentUser,
-                deleteUser: deleteUser
+                deleteUser: deleteUser,
+                updateUser : updateUser
             };
         }
     ]);

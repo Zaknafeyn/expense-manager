@@ -1,32 +1,28 @@
-<h1>Trip expense</h1>
-
 <div ng-controller="tripExpenseCtrl">
+    <h2>{{pageHeader}}</h2>
     <div  class="container-fluid">
         <div class="row">
-            <a ng-repeat="menuItem in menuItems" href="{{menuItem.link}}" role="button" class="btn {{menuItem.menuClass}}">{{menuItem.text}}</a>
+            <a ng-repeat="menuItem in menuItems" href="{{menuItem.link}}" role="button" class="btn {{menuItem.menuClass}}">
+                <i class="fa {{menuItem.icon}}"></i>
+                <span>{{menuItem.text}}</span>
+            </a>
         </div>
     </div>
 
-    <label>Trip year:
-        <select ng-model="selectedYear" ng-options="year for year in years">
-            <option style="display:none" value="">Select a year</option>
-        </select>
-    </label>
-    <span>Selected year: {{selectedYear}}</span>
-    <br/>
-    <label>Select trip:
-        <select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">
-            <option style="display:none" value="">Select a trip</option>
-        </select>
-    </label>
-    <span>Selected trip: {{selectedTrip.name}}</span>
-    <br/>
-
-    <div ng-show="showExpenseFlag">
-        <h1>Expenses</h1>
-    </div>
-
-    <div ng-show="showCalculationFlag">
-        <h1>Calculation</h1>
+    <div class="container-fluid">
+        <label>Trip year:
+            <select ng-model="selectedYear" ng-options="year for year in years">
+                <option style="display:none" value="">Select a year</option>
+            </select>
+        </label>
+        <span>Selected year: {{selectedYear}}</span>
+        <br/>
+        <label>Select trip:
+            <select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">
+                <option style="display:none" value="">Select a trip</option>
+            </select>
+        </label>
+        <span>Selected trip: {{selectedTrip.name}}</span>
+        <br/>
     </div>
 </div>

@@ -1,6 +1,3 @@
-/**
- * Created by Valik on 6/28/15.
- */
 (function (angular, jcs) {
     'use strict';
 
@@ -41,11 +38,15 @@
                 http.get(jcs.modules.pages.models.menu).
                     success(function(data) {
                         for(var menuItem in data){
+                            var btnClass = "btn-sm ";
+                            btnClass += (data[menuItem].name == name)? "btn-primary" : "btn-default";
+                            console.log(btnClass);
                             var newMenuItem = {
                                 "name": data[menuItem].name,
                                 "text": data[menuItem].text,
                                 "link": data[menuItem].link,
-                                "menuClass": (data[menuItem].name == name)? "btn-primary" : "btn-default"
+                                "icon" : data[menuItem].icon,
+                                "menuClass": btnClass
                             };
 
                             menuList.push(newMenuItem);
