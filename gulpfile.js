@@ -6,8 +6,9 @@ var concat = require('gulp-concat');
 //var fs = require('fs');
 //var prettify = require('gulp-prettify');
 var connect = require('gulp-connect');
+var open = require('gulp-open');
 
-gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect']);
+gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect', 'open-url']);
 
 var cors = function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,9 +16,17 @@ var cors = function (req, res, next) {
   next();
 };
 
+gulp.task('open-url', function(){
+    var options = {
+        url: 'http://localhost:8000'
+    };
+    gulp.src('./')
+        .pipe(open('', options));
+});
+
 gulp.task('connect', function() {
   connect.server({
-    root: 'app',
+    root: '',
     livereload: true,
     port: 8000,
     middleware: function() {
@@ -81,10 +90,9 @@ gulp.task('js-concat-pages', function() {
 		.pipe(gulp.dest('./app/distr/modules/pages'));
 });
 
-var basePath = '/app/modules/core/';
 
 gulp.task('js-concat-core', function() {
-	gulp.src(['/app/modules/core/**/*.js'])
+	gulp.src(['./app/modules/core/**/*.js'])
 		.pipe(concat('module.core.js'))
 		.on('error', swallowError)
 		.pipe(gulp.dest('./app/distr/modules/core'));
