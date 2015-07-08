@@ -7,7 +7,6 @@ var concat = require('gulp-concat');
 //var prettify = require('gulp-prettify');
 var connect = require('gulp-connect');
 
-
 gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect']);
 
 var cors = function (req, res, next) {
