@@ -8,7 +8,7 @@ var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 
 
-gulp.task('default', ['watch-app', 'watch-html', 'connect']);
+gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect']);
 
 var cors = function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -34,6 +34,13 @@ gulp.task('html-reload', function () {
  
 gulp.task('watch-html', function () {
   gulp.watch(['./app/**/*.html'], ['html-reload']);
+});
+
+gulp.task('generate-distr', function() {
+    gulp.start('js-concat-app');
+    gulp.start('js-concat-auth');
+    gulp.start('js-concat-pages');
+    gulp.start('js-concat-core');
 });
 
 gulp.task('watch-app', function() {
