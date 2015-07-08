@@ -67,11 +67,15 @@ div.view-container {
     padding-bottom: 0px;
 }
 
+.container-content {
+    padding-top: 20px;
+}
+
 /*jumbotron custom styles*/
 
 /* Space out content a bit */
 body {
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     padding-bottom: 20px;
 }
 
@@ -116,6 +120,7 @@ body {
 .jumbotron {
     text-align: center;
     border-bottom: 1px solid #e5e5e5;
+    padding-top: 0px !important;
 }
 /*.jumbotron .btn {*/
     /*padding: 14px 24px;*/

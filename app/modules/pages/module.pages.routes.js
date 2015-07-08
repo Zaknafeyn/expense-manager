@@ -36,8 +36,13 @@
                 access: {
                     loginRequired: true
                 }
-            }).
-            otherwise({redirectTo: jcs.modules.pages.routes.home});
+            }).when(jcs.modules.pages.routes.crew, {
+                controller: jcs.modules.pages.controllers.crew,
+                templateUrl: jcs.modules.pages.templates.crew,
+                access: {
+                    loginRequired: true
+                }
+            }).otherwise({redirectTo: jcs.modules.pages.routes.home});
         }]);
 
 //    var checkRouting = function ($q, $rootScope, $location) {

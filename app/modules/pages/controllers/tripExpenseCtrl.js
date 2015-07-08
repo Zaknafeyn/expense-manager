@@ -14,7 +14,6 @@
 
                 jcs.modules.pages.common.getMenu(name, $http, function(list){
                     $scope.menuItems = list;
-                    console.log($scope.menuItems);
                 });
 
                 $scope.years = [2010, 2011, 2012, 2013, 2014, 2015];

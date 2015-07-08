@@ -1,33 +1,42 @@
 (function (angular, jcs) {
     'use strict';
 
+    //var apiServer = "http://expense-manager-backend.azurewebsites.net";
+    var apiServer = "http://localhost:59184";
     jcs.modules.pages = {
+        apiServer : apiServer,
         name: 'pages',
         controllers: {
             default: 'defaultCtrl',
             tripExpense: 'tripExpenseCtrl',
             calculations: 'calculationsCtrl',
-            profile: 'profileCtrl'
+            profile: 'profileCtrl',
+            crew: 'crewCtrl'
         },
         routes: {
             home: '/home',
             tripExpense: '/tripExpense',
             calculations: '/calculations',
-            profile: '/profile'
+            profile: '/profile',
+            crew: '/crew'
         },
         templates: {
             home: 'modules/pages/html/home.tmpl.html',
             tripExpense: 'modules/pages/html/tripExpense.tmpl.html',
             calculations: 'modules/pages/html/calculations.tmpl.html',
-            profile: 'modules/pages/html/profile.tmpl.html'
+            profile: 'modules/pages/html/profile.tmpl.html',
+            crew: 'modules/pages/html/crew.tmpl.html'
         },
         models :{
             trips : 'modules/pages/models/trips.json',
-            menu : 'modules/pages/models/menu.json',
-            tempProfiles: 'modules/pages/models/temp.profiles.json'
+            menu : 'modules/pages/models/menu.json'
         },
         api: {
-            profiles: 'http://expense-manager-backend.azurewebsites.net/api/profiles'
+            profiles: apiServer + '/api/profiles',
+            login: apiServer + '/api/login',
+            tournaments: apiServer + '/api/Tournaments',
+            years: apiServer + '/api/Years',
+            tournamentsPerYear: apiServer + '/api/Tournaments/filter/year/'
         },
         events : {
             profileUpdated : "pages:profile:profileUpdated"

@@ -1,0 +1,14 @@
+<div ng-controller="crewCtrl" access="User,Admin" >
+    <h2>{{pageHeader}}</h2>
+    <div  class="container-fluid" >
+        <div class="row">
+            <a ng-repeat="menuItem in menuItems" href="{{menuItem.link}}" role="button" class="btn {{menuItem.menuClass}}">
+                <i class="fa {{menuItem.icon}}"></i>
+                <span>{{menuItem.text}}</span>
+            </a>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+    </div>
+</div>

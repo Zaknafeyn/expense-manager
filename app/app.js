@@ -15,7 +15,36 @@
         'ngToast'
     ]);
 
+
     myApp.controller('mainCtrl', function($scope, $http, authentication, storage, eventbus){
+
+
+        $http.get(jcs.modules.pages.api.tournaments).
+            success(function(data) {
+                $scope.trips = data;
+                $scope.selectedTrip = $scope.trips[0];
+                console.log("Retrieved trips: %O", data);
+            }).
+            error(function(data, status, headers, config) {
+                // log error
+                console.log("error retrieving trips data");
+            });
+
+        $http.get(jcs.modules.pages.api.years).
+            success(function(data) {
+                $scope.years = data;
+                $scope.selectedYear = $scope.years[0];
+            }).
+            error(function(data, status, headers, config) {
+                // log error
+                console.log("error retrieving years data");
+            });
+
+
+
+        $scope.tripSelected = function(trip){
+            console.log("Selected trip: %O", trip);
+        }
 
         // initial state
         $scope.loggedIn = authentication.isLoggedInUser();

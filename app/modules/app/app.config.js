@@ -1,7 +1,6 @@
 (function (angular, jcs) {
     'use strict';
 
-
     angular.module(jcs.modules.app.name)
     .config(['ngToastProvider', function(ngToast) {
         ngToast.configure({
@@ -11,6 +10,5 @@
             animation : 'slide'
         });
     }]);
-
 
 }(angular, jcs));

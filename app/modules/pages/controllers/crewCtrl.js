@@ -1,25 +1,18 @@
-/**
- * Created by Valik on 6/28/15.
- */
 (function (angular, jcs) {
     'use strict';
 
     angular.module(jcs.modules.pages.name)
-        .controller(jcs.modules.pages.controllers.default, [
+        .controller(jcs.modules.pages.controllers.crew, [
             '$scope',
             '$http',
             function ($scope, $http) {
-
-
-                $scope.pageHeader = "Expense manager";
+                var name = "crew";
+                $scope.pageHeader = "Crew";
 
                 jcs.modules.pages.common.getMenu(name, $http, function(list){
                     $scope.menuItems = list;
                     console.log($scope.menuItems);
                 });
-
-                //$scope.tripSelected = false;
-
             }
         ]);
 }(angular, jcs));
