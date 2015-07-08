@@ -1,28 +1,14 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-//var plumber = require('gulp-plumber');
-//var webserver = require('gulp-webserver');
-//var gutil = require('gulp-util');
-//var fs = require('fs');
-//var prettify = require('gulp-prettify');
 var connect = require('gulp-connect');
-var open = require('gulp-open');
 
-gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect', 'open-url']);
+gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect']);
 
 var cors = function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
 };
-
-gulp.task('open-url', function(){
-    var options = {
-        url: 'http://localhost:8000'
-    };
-    gulp.src('./')
-        .pipe(open('', options));
-});
 
 gulp.task('connect', function() {
   connect.server({
