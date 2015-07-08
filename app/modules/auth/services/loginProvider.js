@@ -15,8 +15,7 @@
 
                     var postData = {login : login, loginHash : loginHash, passwordHash : passwordHash};
                     console.log("Post data %O", JSON.stringify(postData));
-                    // $http.post("http://localhost:59184/api/login", JSON.stringify(postData)).
-                    $http.post("http://expense-manager-backend.azurewebsites.net/api/login", JSON.stringify(postData)).
+                    $http.post(jcs.modules.pages.api.login, JSON.stringify(postData)).
                         success(function(data, status, headers, config) {
                             console.log("%O", data);
                             loginData = data;
@@ -31,7 +30,7 @@
                     return defer.promise;
                 },
                 getProfileUrl = function(id){
-                    return "http://expense-manager-backend.azurewebsites.net/api/profiles/" + id;
+                    return jcs.modules.pages.api.profiles + "/" + id;
                 },
                 getProfile = function(login, password) {
                     return loadData(login, password).then(function(profile){
@@ -55,7 +54,7 @@
                 updateProfile = function(profile) {
                     var defer = $q.defer();
 
-                    $http.post("http://expense-manager-backend.azurewebsites.net/api/profiles/", JSON.stringify(profile)).
+                    $http.post(jcs.modules.pages.api.profiles, JSON.stringify(profile)).
                         success(function(data, status, headers, config) {
                             defer.resolve();
                         }).
