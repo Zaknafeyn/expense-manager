@@ -1,6 +1,8 @@
 (function(angular, jcs){
 'use strict';
 
+  jQuery.support.cors = true;
+
     // Declare app level module which depends on views, and components
     var myApp = angular.module(jcs.modules.app.name, [
         "ngStorage",

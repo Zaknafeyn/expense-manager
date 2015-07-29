@@ -1,5 +1,14 @@
 /* app css stylesheet */
 
+body{
+    background: url("images/background.jpg") no-repeat top center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
 .menu {
     list-style: none;
     border-bottom: 0.1em solid black;

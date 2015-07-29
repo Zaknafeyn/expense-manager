@@ -1,6 +1,3 @@
-/**
- * Created by Valik on 6/29/15.
- */
 (function (angular, jcs) {
     'use strict';
 

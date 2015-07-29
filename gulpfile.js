@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
 
-gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect']);
+//gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect']);
+gulp.task('default', ['generate-distr','watch-app', 'watch-html']);
 
 var cors = function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -38,7 +39,7 @@ gulp.task('generate-distr', function() {
 });
 
 gulp.task('watch-app', function() {
-	gulp.watch('./app/modules/app/*.js', ['js-concat-app']);
+	gulp.watch('./app/modules/app/**/*.js', ['js-concat-app']);
 	gulp.watch('./app/modules/auth/**/*.js', ['js-concat-auth']);
 	gulp.watch('./app/modules/pages/**/*.js', ['js-concat-pages']);
 	gulp.watch('./app/modules/core/**/*.js', ['js-concat-core']);

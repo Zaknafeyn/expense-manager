@@ -1,8 +1,8 @@
 (function (angular, jcs) {
     'use strict';
 
-    //var apiServer = "http://expense-manager-backend.azurewebsites.net";
-    var apiServer = "http://localhost:59184";
+    var apiServer = "http://expense-manager-backend.azurewebsites.net";
+    // var apiServer = "http://localhost:59184";
     jcs.modules.pages = {
         apiServer : apiServer,
         name: 'pages',
