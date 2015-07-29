@@ -1,6 +1,3 @@
-/**
- * Created by Valik on 6/27/15.
- */
 (function (window) {
     'use strict';
 

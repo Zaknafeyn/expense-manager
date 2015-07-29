@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
+var copy = require('gulp-copy');
+var gulpUtil = require('gulp-util');
 
 //gulp.task('default', ['generate-distr','watch-app', 'watch-html', 'connect']);
 gulp.task('default', ['generate-distr','watch-app', 'watch-html']);
@@ -89,4 +91,12 @@ function swallowError(error) {
 	//If you want details of the error in the console
 	console.log(error.toString());
 	this.emit('end');
-}
+};
+
+// -------release tasks
+// -- release destination folder - ../release
+
+gulp.task('copy-high-level', function() {
+	return gulp.src("./app/index.*")
+  			   .pipe(gulp.dest("./../release"));
+});

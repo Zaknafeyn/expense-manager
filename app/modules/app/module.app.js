@@ -3,6 +3,7 @@
 
     jcs.modules.app = {
         name: 'myApp',
+        apiServer : jcs.modules.pages.apiServer,
         events: {
             userLoggedIn: 'auth:user:loggedIn',
             userLoggedOut: 'auth:user:loggedOut'
@@ -13,6 +14,9 @@
         services: {
             tournamentSelection: 'tournamentSelection'
         },
+        api: {
+            expenses : apiServer + '/api/crewexpenses/'
+        }
         routes: {
             login: '/login',
             notAuthorised: '/not-authorised'

@@ -13,19 +13,29 @@
                     $scope.menuItems = list;
                 });
 
-                $scope.years = [2010, 2011, 2012, 2013, 2014, 2015];
-                $scope.selectedYear = $scope.years[0]; // 2010
-
-                $http.get(jcs.modules.pages.models.trips).
+                console.log("%O", $http);
+                console.log("URL years:" + jcs.modules.pages.api.years);
+                $http.get(jcs.modules.pages.api.years).
                     success(function(data, status, headers, config) {
-                        $scope.tableHeaders = data;
+                        $scope.years = data;
+                        $scope.selectedYear = $scope.years[0]; // 2010
                     }).
                     error(function(data, status, headers, config) {
                         // log error
-                        console.log("error retrieving trips data");
+                        console.log("Error retrieving years data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
                     });
 
-                $scope.selectedTrip = $scope.trips[0];
+                console.log("URL tournaments:" + jcs.modules.pages.api.tournaments);
+                $http.get(jcs.modules.pages.api.tournaments).
+                    success(function(data, status, headers, config) {
+                        $scope.tournaments = data;
+                        $scope.selectedTrip = $scope.tournaments[0];
+                    }).
+                    error(function(data, status, headers, config) {
+                        // log error
+                        console.log("Error retrieving tournaments data");
+                    });
+                
             }
         ]);
 }(angular, jcs));

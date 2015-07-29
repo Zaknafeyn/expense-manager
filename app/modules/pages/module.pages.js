@@ -67,7 +67,6 @@
                         // log error
                         console.log("Error retrieving menu data");
                     });
-
             }
         }
     };

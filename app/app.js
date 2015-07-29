@@ -9,7 +9,6 @@
         jcs.modules.app.router,
         'myApp.view1',
         'myApp.addEntryView',
-//        'myApp.version',
         jcs.modules.auth.name,
         jcs.modules.core.name,
         jcs.modules.pages.name,
@@ -17,9 +16,8 @@
         'ngToast'
     ]);
 
-
-    myApp.controller('mainCtrl', function($scope, $http, authentication, storage, eventbus){
-
+    myApp.controller('mainCtrl', function($scope, $http, authentication, storage, eventbus) {
+var tournamentSelection;
 
         $http.get(jcs.modules.pages.api.tournaments).
             success(function(data) {
@@ -29,7 +27,7 @@
             }).
             error(function(data, status, headers, config) {
                 // log error
-                console.log("error retrieving trips data");
+                console.log("Error retrieving trips data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
             });
 
         $http.get(jcs.modules.pages.api.years).
@@ -39,14 +37,17 @@
             }).
             error(function(data, status, headers, config) {
                 // log error
-                console.log("error retrieving years data");
+                console.log("Error retrieving years data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
             });
 
-
-
-        $scope.tripSelected = function(trip){
+        $scope.tripSelected = function(trip) {
+            tournamentSelection.updateCurrentTournamentId(trip.id);
             console.log("Selected trip: %O", trip);
-        }
+            tournamentSelection.getExpenses(1)
+                .then(function(expenses) {
+                    console.log("Expenses %O", expenses);
+                });
+        };
 
         // initial state
         $scope.loggedIn = authentication.isLoggedInUser();
@@ -79,84 +80,6 @@
 
         $scope.testName = "Test name";
 
-        $scope.years = [2010, 2011, 2012, 2013, 2014, 2015];
-        $scope.selectedYear = $scope.years[0]; // 2010
-
-        $scope.trips = [
-            {
-                'year' : 2010,
-                'name' : "Winter Brest 2010"
-            },
-            {
-                'year' : 2010,
-                'name' : "PChU - 2010"
-            },
-            {
-                'year' : 2010,
-                'name' : "OChU - 2010"
-            },
-            {
-                'year' : 2011,
-                'name' : "Winter Brest 2011"
-            },
-            {
-                'year' : 2011,
-                'name' : "Windmill - 2011"
-            },
-            {
-                'year' : 2011,
-                'name' : "PChU - 2011"
-            },
-            {
-                'year' : 2011,
-                'name' : "OChU - 2011"
-            }
-        ];
-
-        $scope.selectedTrip = $scope.trips[0];
-
-        $scope.players = [
-            {
-                "name" : "Player1",
-                "isDriver" : "false"
-            },
-            {
-                "name" : "Player2",
-                "isDriver" : "false"
-            },
-            {
-                "name" : "Player3",
-                "isDriver" : "false"
-            },
-            {
-                "name" : "Player4",
-                "isDriver" : "false"
-            },
-            {
-                "name" : "Player5",
-                "isDriver" : "false"
-            },
-            {
-                "name" : "Player6",
-                "isDriver" : "false"
-            },
-            {
-                "name" : "Player6",
-                "isDriver" : "false"
-            },
-            {
-                "name" : "Player8",
-                "isDriver" : "true",
-                "carName" : "Yoslik"
-            },
-            {
-                "name" : "Player9",
-                "isDriver" : "true",
-                "carName" : "Drakosha"
-            }
-        ];
-
-        $scope.selectedPlayer = $scope.players[0];
         $scope.selectedDriver = null;
 
         $http.get('models/headers.json').
