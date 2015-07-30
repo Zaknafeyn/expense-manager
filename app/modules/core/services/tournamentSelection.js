@@ -1,7 +1,7 @@
 (function (angular, jcs) {
     'use strict';
 
-    angular.module(jcs.modules.app.name).factory(jcs.modules.app.services.tournamentSelection, [
+    angular.module(jcs.modules.core.name).factory(jcs.modules.core.services.tournamentSelection, [
         '$http',
         '$q',
         function ($http, $q) {

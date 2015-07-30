@@ -6,8 +6,12 @@
     jcs.modules = {
         app: {
             name: 'myApp',
-            router: 'ngRoute'
-//            router: 'ui.router'
+            router: 'ngRoute',
+            controllers: {
+                mainCtrl: 'mainCtrl'
+            },
+            events: {
+            }
         }
     };
 }(window));

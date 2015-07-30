@@ -1,10 +1,18 @@
 (function (angular, jcs) {
     'use strict';
 
+    var apiServer = "http://expense-manager-backend.azurewebsites.net";
+    // var apiServer = "http://localhost:59184";
+
     jcs.modules.core = {
-        name: 'jcs-core',
+        name: "jcs-core",
+        apiServer : apiServer,
         services: {
-            eventbus: 'eventbus'
+            eventbus: "eventbus",
+            tournamentSelection : "tournamentSelection"
+        },
+        api: {
+            expenses: apiServer + "/api/crewexpenses/"
         }
     };
 

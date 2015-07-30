@@ -16,9 +16,15 @@
         'ngToast'
     ]);
 
-    myApp.controller('mainCtrl', function($scope, $http, authentication, storage, eventbus) {
-var tournamentSelection;
-
+    myApp.controller(jcs.modules.app.controllers.mainCtrl, [
+        '$scope',
+        '$http',
+        jcs.modules.auth.services.authentication,
+        jcs.modules.auth.services.storage,
+        jcs.modules.core.services.eventbus,
+        jcs.modules.core.services.tournamentSelection,
+        function($scope, $http, authentication, storage, eventbus, tournamentSelection) {
+            console.log("controllers: %O", jcs.modules.app)
         $http.get(jcs.modules.pages.api.tournaments).
             success(function(data) {
                 $scope.trips = data;
@@ -149,5 +155,5 @@ var tournamentSelection;
         });
 
         $scope.selectedDriver1 = "";
-    });
+    }]);
 }(angular, jcs));
