@@ -43,8 +43,47 @@
             <!--</select>-->
         <!--</label>-->
 
-        <div ng-repeat="expense in expenses.expensesArray" class="row">
-            <label>Expense: {{expense.expense}}&nbsp;{{expense.currency}}</label>
+        <div ng-repeat="expense in expenses.expensesArray" class="row form-inline">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label>{{$index + 1}}</label>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Value</label>
+                    <input type="number" class="form-control form-control-sm" ng-model="expense.expense" placeholder="Expense value">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Currency</label>
+                    <input type="text" class="form-control form-control-sm" ng-model="expense.currency" placeholder="Currency">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Description</label>
+                    <input type="text" class="form-control" ng-model="expense.description" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only">Category</label>
+                    <select class="form-control form-control-sm" ng-model="expense.category" ng-options="category.id as category.category for category in categories"/>
+                </div>
+            </form>
+
+            <!--<div class="col-md-2 text-right">-->
+                <!--<label>Expense:</label>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+                <!--<div class="form-group form-group-xs">-->
+                <!--<input   class="form-control" type="text" value="{{expense.expense}}"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-1">-->
+                <!--<label>{{expense.currency}}</label>-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<input class="form-control" type="text" value="{{expense.description}}">-->
+            <!--</div>-->
+            <!--<div class="col-md-3">-->
+                <!--<select class="form-control" ng-model="expense.category" ng-options="category.id as category.category for category in categories">-->
+                <!--</select>-->
+            <!--</div>-->
         </div>
     </div>
 </div>

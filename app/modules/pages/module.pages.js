@@ -36,7 +36,10 @@
             login: apiServer + '/api/login',
             tournaments: apiServer + '/api/Tournaments',
             years: apiServer + '/api/Years',
-            tournamentsPerYear: apiServer + '/api/Tournaments/filter/year/'
+            tournamentsPerYear: apiServer + '/api/Tournaments/filter/year/',
+            dictionaries: {
+                categories : apiServer + '/api/dictionaries/1'
+            }
         },
         events : {
             profileUpdated : "pages:profile:profileUpdated"
@@ -49,7 +52,7 @@
                         for(var menuItem in data){
                             var btnClass = "btn-sm ";
                             btnClass += (data[menuItem].name == name)? "btn-primary" : "btn-default";
-                            console.log(btnClass);
+                            //console.log(btnClass);
                             var newMenuItem = {
                                 "name": data[menuItem].name,
                                 "text": data[menuItem].text,

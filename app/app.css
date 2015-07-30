@@ -80,6 +80,11 @@ div.view-container {
     padding-top: 20px;
 }
 
+/* form sizes */
+.form-control-sm {
+    width : 100px !important;
+}
+
 /*jumbotron custom styles*/
 
 /* Space out content a bit */
