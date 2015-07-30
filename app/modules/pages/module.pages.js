@@ -2,6 +2,7 @@
     'use strict';
 
     var apiServer = jcs.modules.core.apiServer;
+    var categoryUrl = apiServer + "/api/dictionaries/category/";
 
     jcs.modules.pages = {
         apiServer : apiServer,
@@ -38,7 +39,8 @@
             years: apiServer + '/api/Years',
             tournamentsPerYear: apiServer + '/api/Tournaments/filter/year/',
             dictionaries: {
-                categories : apiServer + '/api/dictionaries/1'
+                categories : categoryUrl + 'categories',
+                currencies : categoryUrl + 'currencies'
             }
         },
         events : {

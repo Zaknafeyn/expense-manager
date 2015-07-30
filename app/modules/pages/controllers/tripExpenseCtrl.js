@@ -16,16 +16,16 @@
                     $scope.menuItems = list;
                 });
 
-                //$log.debug("URL years:" + jcs.modules.pages.api.years);
-                $http.get(jcs.modules.pages.api.years).
-                    success(function(data, status, headers, config) {
-                        $scope.years = data;
-                        $scope.selectedYear = $scope.years[0]; // 2010
-                    }).
-                    error(function(data, status, headers, config) {
-                        // log error
-                        $log.error("Error retrieving years data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
-                    });
+                ////$log.debug("URL years:" + jcs.modules.pages.api.years);
+                //$http.get(jcs.modules.pages.api.years).
+                //    success(function(data, status, headers, config) {
+                //        $scope.years = data;
+                //        $scope.selectedYear = $scope.years[0]; // 2010
+                //    }).
+                //    error(function(data, status, headers, config) {
+                //        // log error
+                //        $log.error("Error retrieving years data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
+                //    });
 
                 $http.get(jcs.modules.pages.api.dictionaries.categories).
                     success(function(data, status, headers, config) {
@@ -37,16 +37,16 @@
                         $log.error("Error retrieving categories data");
                     });
 
-                //$log.debug("URL tournaments:" + jcs.modules.pages.api.tournaments);
-                $http.get(jcs.modules.pages.api.tournaments).
-                    success(function(data, status, headers, config) {
-                        $scope.tournaments = data;
-                        $scope.selectedTrip = $scope.tournaments[0];
-                    }).
-                    error(function(data, status, headers, config) {
-                        // log error
-                        $log.error("Error retrieving tournaments data");
-                    });
+                ////$log.debug("URL tournaments:" + jcs.modules.pages.api.tournaments);
+                //$http.get(jcs.modules.pages.api.tournaments).
+                //    success(function(data, status, headers, config) {
+                //        $scope.tournaments = data;
+                //        $scope.selectedTrip = $scope.tournaments[0];
+                //    }).
+                //    error(function(data, status, headers, config) {
+                //        // log error
+                //        $log.error("Error retrieving tournaments data");
+                //    });
 
                 /* event handlers
                 * ---------------
