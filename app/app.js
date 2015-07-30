@@ -24,11 +24,22 @@
         jcs.modules.core.services.eventbus,
         jcs.modules.core.services.tournamentSelection,
         function($scope, $http, authentication, storage, eventbus, tournamentSelection) {
-            console.log("controllers: %O", jcs.modules.app)
+
+        $scope.tripSelected = function(tournament) {
+            if (tournament == undefined)
+                return;
+
+            tournamentSelection.updateCurrentTournamentId(tournament.id);
+            console.log("Selected trip: %O", tournament);
+            eventbus.broadcast(jcs.modules.core.events.tournamentChanged, tournament.id)
+        };
+
         $http.get(jcs.modules.pages.api.tournaments).
             success(function(data) {
                 $scope.trips = data;
                 $scope.selectedTrip = $scope.trips[0];
+                $scope.tripSelected($scope.selectedTrip);
+
                 console.log("Retrieved trips: %O", data);
             }).
             error(function(data, status, headers, config) {
@@ -46,15 +57,6 @@
                 console.log("Error retrieving years data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
             });
 
-        $scope.tripSelected = function(trip) {
-            tournamentSelection.updateCurrentTournamentId(trip.id);
-            console.log("Selected trip: %O", trip);
-            tournamentSelection.getExpenses(1)
-                .then(function(expenses) {
-                    console.log("Expenses %O", expenses);
-                });
-        };
-
         // initial state
         $scope.loggedIn = authentication.isLoggedInUser();
         if ($scope.loggedIn)
@@ -65,7 +67,9 @@
             authentication.logout();
         };
 
-        //start events subscription section
+        /* event handlers
+         * ---------------
+         */
         eventbus.subscribe(jcs.modules.auth.events.userLoggedIn, function(e, user){
             console.log("Login Event caught")
             $scope.loggedIn = authentication.isLoggedInUser();

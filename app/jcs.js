@@ -11,6 +11,9 @@
                 mainCtrl: 'mainCtrl'
             },
             events: {
+            },
+            api : {
+
             }
         }
     };

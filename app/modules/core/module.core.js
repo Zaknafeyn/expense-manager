@@ -11,6 +11,9 @@
             eventbus: "eventbus",
             tournamentSelection : "tournamentSelection"
         },
+        events : {
+            tournamentChanged : "tournamentChanged"
+        },
         api: {
             expenses: apiServer + "/api/crewexpenses/"
         }

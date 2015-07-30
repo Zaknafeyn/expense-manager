@@ -5,7 +5,10 @@
         .controller(jcs.modules.pages.controllers.tripExpense, [
             '$scope',
             '$http',
-            function ($scope, $http) {
+            '$log',
+            jcs.modules.core.services.eventbus,
+            jcs.modules.core.services.tournamentSelection,
+            function ($scope, $http, $log, eventbus, tournamentSelection) {
                 var name = "tripExpense";
                 $scope.pageHeader = "Trip expenses";
 
@@ -13,8 +16,7 @@
                     $scope.menuItems = list;
                 });
 
-                console.log("%O", $http);
-                console.log("URL years:" + jcs.modules.pages.api.years);
+                $log.debug("URL years:" + jcs.modules.pages.api.years);
                 $http.get(jcs.modules.pages.api.years).
                     success(function(data, status, headers, config) {
                         $scope.years = data;
@@ -22,10 +24,10 @@
                     }).
                     error(function(data, status, headers, config) {
                         // log error
-                        console.log("Error retrieving years data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
+                        $log.error("Error retrieving years data. Data - %O, status - %O, headers - %O, config - %O", data, status, headers, config);
                     });
 
-                console.log("URL tournaments:" + jcs.modules.pages.api.tournaments);
+                $log.debug("URL tournaments:" + jcs.modules.pages.api.tournaments);
                 $http.get(jcs.modules.pages.api.tournaments).
                     success(function(data, status, headers, config) {
                         $scope.tournaments = data;
@@ -33,9 +35,22 @@
                     }).
                     error(function(data, status, headers, config) {
                         // log error
-                        console.log("Error retrieving tournaments data");
+                        $log.error("Error retrieving tournaments data");
                     });
-                
+
+                /* event handlers
+                * ---------------
+                */
+                eventbus.subscribe(jcs.modules.core.events.tournamentChanged, function(tournamentId){
+                    tournamentSelection.getExpenses(1)
+                        .then(function(expenses) {
+                            $scope.expenses = {
+                                crewId : 1,
+                                expensesArray : expenses
+                            };
+                            $log.debug("Expenses %O", expenses);
+                        });
+                });
             }
         ]);
 }(angular, jcs));

@@ -10,30 +10,32 @@
     </div>
 
     <div class="container container-content">
-        <div class="row">
+        <!--<div class="row">-->
 
-            <div class="col-md-3 col-md-offset-2 text-right">
-                <label>Trip year:
-                </label>
-            </div>
-            <div class="col-md-3 text-left">
-                <select ng-model="selectedYear" ng-options="year for year in years">
-                    <option style="display:none" value="">Select a year</option>
-                </select>
-            </div>
-        </div>
+            <!--<div class="col-md-3 col-md-offset-2 text-right">-->
+                <!--<label>Trip year:-->
+                <!--</label>-->
+            <!--</div>-->
+            <!--<div class="col-md-3 text-left">-->
+                <!--<select ng-model="selectedYear" ng-options="year for year in years">-->
+                    <!--<option style="display:none" value="">Select a year</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div class="row">
-            <div class="col-md-3 col-md-offset-2 text-right">
-                <label>Select trip:
-                </label>
-            </div>
-            <div class="col-md-3 text-left">
-                <select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">
-                    <option style="display:none" value="">Select a trip</option>
-                </select>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="col-md-3 col-md-offset-2 text-right">-->
+                <!--<label>Select trip:-->
+                <!--</label>-->
+            <!--</div>-->
+            <!--<div class="col-md-3 text-left">-->
+                <!--<select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">-->
+                    <!--<option style="display:none" value="">Select a trip</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
         <!--<br/>-->
         <!--<label>Select trip:-->
             <!--<select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">-->
@@ -41,6 +43,8 @@
             <!--</select>-->
         <!--</label>-->
 
-        <br/>
+        <div ng-repeat="expense in expenses.expensesArray" class="row">
+            <label>Expense: {{expense.expense}}&nbsp;{{expense.currency}}</label>
+        </div>
     </div>
 </div>
