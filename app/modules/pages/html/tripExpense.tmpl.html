@@ -10,41 +10,8 @@
     </div>
 
     <div class="container container-content">
-        <!--<div class="row">-->
-
-            <!--<div class="col-md-3 col-md-offset-2 text-right">-->
-                <!--<label>Trip year:-->
-                <!--</label>-->
-            <!--</div>-->
-            <!--<div class="col-md-3 text-left">-->
-                <!--<select ng-model="selectedYear" ng-options="year for year in years">-->
-                    <!--<option style="display:none" value="">Select a year</option>-->
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="row">-->
-            <!--<div class="col-md-3 col-md-offset-2 text-right">-->
-                <!--<label>Select trip:-->
-                <!--</label>-->
-            <!--</div>-->
-            <!--<div class="col-md-3 text-left">-->
-                <!--<select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">-->
-                    <!--<option style="display:none" value="">Select a trip</option>-->
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
-        <!--<br/>-->
-        <!--<label>Select trip:-->
-            <!--<select ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">-->
-                <!--<option style="display:none" value="">Select a trip</option>-->
-            <!--</select>-->
-        <!--</label>-->
-
-        <div ng-repeat="expense in expenses.expensesArray" class="row form-inline">
-            <form class="form-inline">
+        <form class="form-inline">
+            <div ng-repeat="expense in expenses.expensesArray" class="row form-inline">
                 <div class="form-group">
                     <label>{{$index + 1}}</label>
                 </div>
@@ -64,26 +31,12 @@
                     <label class="sr-only">Category</label>
                     <select class="form-control form-control-sm" ng-model="expense.category" ng-options="category.id as category.category for category in categories"/>
                 </div>
-            </form>
-
-            <!--<div class="col-md-2 text-right">-->
-                <!--<label>Expense:</label>-->
-            <!--</div>-->
-            <!--<div class="col-md-2">-->
-                <!--<div class="form-group form-group-xs">-->
-                <!--<input   class="form-control" type="text" value="{{expense.expense}}"/>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-md-1">-->
-                <!--<label>{{expense.currency}}</label>-->
-            <!--</div>-->
-            <!--<div class="col-md-3">-->
-                <!--<input class="form-control" type="text" value="{{expense.description}}">-->
-            <!--</div>-->
-            <!--<div class="col-md-3">-->
-                <!--<select class="form-control" ng-model="expense.category" ng-options="category.id as category.category for category in categories">-->
-                <!--</select>-->
-            <!--</div>-->
-        </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-default btn-glyphicon-sm" ng-click="removeItem(expense)" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

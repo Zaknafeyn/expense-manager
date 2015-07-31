@@ -64,7 +64,7 @@
                 </label>
             </div>
             <div class="col-md-3 text-left">
-                <select ng-model="selectedYear" ng-options="year for year in years">
+                <select class="form-control" ng-model="selectedYear" ng-options="year for year in years">
                     <option style="display:none" value="">Select a year</option>
                 </select>
             </div>
@@ -76,7 +76,7 @@
                 </label>
             </div>
             <div class="col-md-3 text-left">
-                <select ng-change="tripSelected(selectedTrip)" ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">
+                <select class="form-control" ng-change="tripSelected(selectedTrip)" ng-model="selectedTrip" ng-options="trip.name for trip in trips | filter:selectedYear">
                     <option style="display:none" value="">Select a trip</option>
                 </select>
             </div>

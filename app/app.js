@@ -29,9 +29,12 @@
             if (tournament == undefined)
                 return;
 
-            tournamentSelection.updateCurrentTournamentId(tournament.id);
+            var oldTournId = tournamentSelection.getCurrentTournamentId();
+            tournamentSelection.commitChanges(1);
+            var newTournId = tournament.id;
+            tournamentSelection.updateCurrentTournamentId(newTournId);
             console.log("Selected trip: %O", tournament);
-            eventbus.broadcast(jcs.modules.core.events.tournamentChanged, tournament.id)
+            eventbus.broadcast(jcs.modules.core.events.tournamentChanged, oldTournId, newTournId)
         };
 
         $http.get(jcs.modules.pages.api.tournaments).

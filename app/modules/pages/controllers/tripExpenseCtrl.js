@@ -16,6 +16,8 @@
                     $scope.menuItems = list;
                 });
 
+                reloadExpenses();
+
                 ////$log.debug("URL years:" + jcs.modules.pages.api.years);
                 //$http.get(jcs.modules.pages.api.years).
                 //    success(function(data, status, headers, config) {
@@ -37,6 +39,22 @@
                         $log.error("Error retrieving categories data");
                     });
 
+
+                function reloadExpenses(){
+                    $log.info("Reloading expenses ...");
+                    tournamentSelection.getExpenses(1)
+                        .then(function(expenses) {
+                            $scope.expenses = {
+                                crewId : 1,
+                                expensesArray : expenses
+                            };
+                            $log.debug("Expenses %O", expenses);
+                        });
+                };
+
+                $scope.removeItem = function(expenseItem) {
+                    tournamentSelection.removeItem(expenseItem);
+                };
                 ////$log.debug("URL tournaments:" + jcs.modules.pages.api.tournaments);
                 //$http.get(jcs.modules.pages.api.tournaments).
                 //    success(function(data, status, headers, config) {
@@ -51,15 +69,17 @@
                 /* event handlers
                 * ---------------
                 */
-                eventbus.subscribe(jcs.modules.core.events.tournamentChanged, function(tournamentId){
-                    tournamentSelection.getExpenses(1)
-                        .then(function(expenses) {
-                            $scope.expenses = {
-                                crewId : 1,
-                                expensesArray : expenses
-                            };
-                            $log.debug("Expenses %O", expenses);
-                        });
+                eventbus.subscribe(jcs.modules.core.events.tournamentChanged, function(oldTournamentId, newTournamentId){
+                    //tournamentSelection.getExpenses(1)
+                    //    .then(function(expenses) {
+                    //        $scope.expenses = {
+                    //            crewId : 1,
+                    //            expensesArray : expenses
+                    //        };
+                    //        $log.debug("Expenses %O", expenses);
+                    //    });
+                    $log.debug("Tournament changed. Old tounament id: %s, new tournamentId: %s", oldTournamentId, newTournamentId);
+                    reloadExpenses();
                 });
             }
         ]);

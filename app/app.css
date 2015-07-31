@@ -85,6 +85,10 @@ div.view-container {
     width : 100px !important;
 }
 
+.btn-glyphicon-sm {
+    width : 50px !important;
+}
+
 /*jumbotron custom styles*/
 
 /* Space out content a bit */
