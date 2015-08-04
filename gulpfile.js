@@ -60,21 +60,21 @@ gulp.task('webserver', function() {
 
 gulp.task('js-concat-app', function() {
 	gulp.src('./app/modules/app/**/*.js')
-		.pipe(concat('module.app.js'))
+		.pipe(concat('distr.module.app.js'))
 		.on('error', swallowError)
 		.pipe(gulp.dest('./app/distr/modules/app'));
 });
 
 gulp.task('js-concat-auth', function() {
 	gulp.src('./app/modules/auth/**/*.js')
-		.pipe(concat('module.auth.js'))
+		.pipe(concat('distr.module.auth.js'))
 		.on('error', swallowError)
 		.pipe(gulp.dest('./app/distr/modules/auth'));
 });
 
 gulp.task('js-concat-pages', function() {
 	gulp.src('./app/modules/pages/**/*.js')
-		.pipe(concat('module.pages.js'))
+		.pipe(concat('distr.module.pages.js'))
 		.on('error', swallowError)
 		.pipe(gulp.dest('./app/distr/modules/pages'));
 });
@@ -82,7 +82,7 @@ gulp.task('js-concat-pages', function() {
 
 gulp.task('js-concat-core', function() {
 	gulp.src(['./app/modules/core/**/*.js'])
-		.pipe(concat('module.core.js'))
+		.pipe(concat('distr.module.core.js'))
 		.on('error', swallowError)
 		.pipe(gulp.dest('./app/distr/modules/core'));
 });
