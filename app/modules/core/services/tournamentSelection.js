@@ -17,7 +17,7 @@
                 //console.log("Getting expenses from url: %s", jcs.modules.core.api.expenses + crewId );
                 $http.get(jcs.modules.core.api.expenses + crewId).
                     success(function(data, status, headers, config) {
-                        console.log("%O", data);
+                        $log.debug("%O", data);
                         expensesData = data;
                         currentExpenseData = expensesData;
                         defer.resolve(expensesData);
@@ -53,6 +53,9 @@
                 if (index > -1) {
                     currentExpenseData.splice(index, 1);
                 };
+
+                if (item.id == undefined)
+                    return;
 
                 $http.delete(jcs.modules.core.api.expenses + item.id)
                     .error(function(data){

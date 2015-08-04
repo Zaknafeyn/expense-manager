@@ -2,7 +2,8 @@
     'use strict';
 
     var apiServer = jcs.modules.core.apiServer;
-    var categoryUrl = apiServer + "/api/dictionaries/category/";
+    var apiPath = jcs.modules.core.apiPath;
+    var categoryUrl = apiPath + "/dictionaries/category/";
 
     jcs.modules.pages = {
         apiServer : apiServer,
@@ -12,32 +13,35 @@
             tripExpense: 'tripExpenseCtrl',
             calculations: 'calculationsCtrl',
             profile: 'profileCtrl',
-            crew: 'crewCtrl'
+            crew: 'crewCtrl',
+            currencies : 'currencies'
         },
         routes: {
             home: '/home',
             tripExpense: '/tripExpense',
             calculations: '/calculations',
             profile: '/profile',
-            crew: '/crew'
+            crew: '/crew',
+            currencies: '/currencies'
         },
         templates: {
             home: 'modules/pages/html/home.tmpl.html',
             tripExpense: 'modules/pages/html/tripExpense.tmpl.html',
             calculations: 'modules/pages/html/calculations.tmpl.html',
             profile: 'modules/pages/html/profile.tmpl.html',
-            crew: 'modules/pages/html/crew.tmpl.html'
+            crew: 'modules/pages/html/crew.tmpl.html',
+            currencies: 'modules/pages/html/currencies.tmpl.html'
         },
         models :{
             trips : 'modules/pages/models/trips.json',
             menu : 'modules/pages/models/menu.json'
         },
         api: {
-            profiles: apiServer + '/api/profiles',
-            login: apiServer + '/api/login',
-            tournaments: apiServer + '/api/Tournaments',
-            years: apiServer + '/api/Years',
-            tournamentsPerYear: apiServer + '/api/Tournaments/filter/year/',
+            profiles: apiPath + '/profiles',
+            login: apiPath + '/login',
+            tournaments: apiPath + '/Tournaments',
+            years: apiPath + '/Years',
+            tournamentsPerYear: apiPath + '/Tournaments/filter/year/',
             dictionaries: {
                 categories : categoryUrl + 'categories',
                 currencies : categoryUrl + 'currencies'

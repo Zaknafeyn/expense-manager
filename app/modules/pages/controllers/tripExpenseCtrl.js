@@ -16,7 +16,7 @@
                     $scope.menuItems = list;
                 });
 
-                reloadExpenses();
+                reloadExpenses(1);
 
                 ////$log.debug("URL years:" + jcs.modules.pages.api.years);
                 //$http.get(jcs.modules.pages.api.years).
@@ -31,7 +31,7 @@
 
                 $http.get(jcs.modules.pages.api.dictionaries.categories).
                     success(function(data, status, headers, config) {
-                        $scope.categories = data;
+                        $scope.categories = data[0];
                         $log.debug("Categories : %O", data);
                     }).
                     error(function(data, status, headers, config) {
@@ -39,21 +39,46 @@
                         $log.error("Error retrieving categories data");
                     });
 
+                $http.get(jcs.modules.pages.api.dictionaries.currencies).
+                    success(function(data, status, headers, config) {
+                        $scope.currencies = data[0];
+                        $log.debug("Currencies : %O", data);
+                    }).
+                    error(function(data, status, headers, config) {
+                        // log error
+                        $log.error("Error retrieving currencies data");
+                    });
 
-                function reloadExpenses(){
+                function reloadExpenses(crewId){
                     $log.info("Reloading expenses ...");
-                    tournamentSelection.getExpenses(1)
+                    tournamentSelection.getExpenses(crewId)
                         .then(function(expenses) {
                             $scope.expenses = {
-                                crewId : 1,
+                                crewId : crewId,
                                 expensesArray : expenses
                             };
                             $log.debug("Expenses %O", expenses);
                         });
                 };
 
+                function canReloadExpenses(){
+                    // validate expenses
+                    return true;
+                };
+
                 $scope.removeItem = function(expenseItem) {
                     tournamentSelection.removeItem(expenseItem);
+                };
+
+                $scope.addNewItem = function(){
+                    $log.debug("add new item");
+                    $scope.expenses.expensesArray.push({
+                        expense : 0,
+                        description : "",
+                        currency : 0,
+                        category : 0,
+                        carCrewRefId : 1
+                    });
                 };
                 ////$log.debug("URL tournaments:" + jcs.modules.pages.api.tournaments);
                 //$http.get(jcs.modules.pages.api.tournaments).
@@ -79,7 +104,7 @@
                     //        $log.debug("Expenses %O", expenses);
                     //    });
                     $log.debug("Tournament changed. Old tounament id: %s, new tournamentId: %s", oldTournamentId, newTournamentId);
-                    reloadExpenses();
+                    reloadExpenses(1);
                 });
             }
         ]);

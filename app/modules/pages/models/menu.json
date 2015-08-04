@@ -16,5 +16,11 @@
       "icon": "fa-car",
       "text": "Crew",
       "link": "#/crew"
-    }
+    },
+  {
+    "name": "currencies",
+    "icon": "fa-money",
+    "text": "Currencies",
+    "link": "#/currencies"
+  }
 ]

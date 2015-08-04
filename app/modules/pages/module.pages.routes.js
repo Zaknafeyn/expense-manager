@@ -42,6 +42,12 @@
                 access: {
                     loginRequired: true
                 }
+            }).when(jcs.modules.pages.routes.currencies, {
+                controller: jcs.modules.pages.controllers.currencies,
+                templateUrl: jcs.modules.pages.templates.currencies,
+                access: {
+                    loginRequired: true
+                }
             }).otherwise({redirectTo: jcs.modules.pages.routes.home});
         }]);
 
