@@ -39,9 +39,9 @@
         api: {
             profiles: apiPath + '/profiles',
             login: apiPath + '/login',
-            tournaments: apiPath + '/Tournaments',
+            trips: apiPath + '/Trips',
             years: apiPath + '/Years',
-            tournamentsPerYear: apiPath + '/Tournaments/filter/year/',
+            tripsPerYear: apiPath + '/Trips/filter/year/',
             dictionaries: {
                 categories : categoryUrl + 'categories',
                 currencies : categoryUrl + 'currencies'

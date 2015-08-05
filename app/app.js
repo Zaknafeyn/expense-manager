@@ -22,22 +22,22 @@
         jcs.modules.auth.services.authentication,
         jcs.modules.auth.services.storage,
         jcs.modules.core.services.eventbus,
-        jcs.modules.core.services.tournamentSelection,
-        function($scope, $http, authentication, storage, eventbus, tournamentSelection) {
+        jcs.modules.core.services.tripsSelection,
+        function($scope, $http, authentication, storage, eventbus, tripSelection) {
 
         $scope.tripSelected = function(tournament) {
             if (tournament == undefined)
                 return;
 
-            var oldTournId = tournamentSelection.getCurrentTournamentId();
-            tournamentSelection.commitChanges(1);
+            var oldTournId = tripSelection.getCurrentTournamentId();
+            tripSelection.commitChanges(1);
             var newTournId = tournament.id;
-            tournamentSelection.updateCurrentTournamentId(newTournId);
+            tripSelection.updateCurrentTournamentId(newTournId);
             console.log("Selected trip: %O", tournament);
-            eventbus.broadcast(jcs.modules.core.events.tournamentChanged, oldTournId, newTournId)
+            eventbus.broadcast(jcs.modules.core.events.tripChanged, oldTournId, newTournId)
         };
 
-        $http.get(jcs.modules.pages.api.tournaments).
+        $http.get(jcs.modules.pages.api.trips).
             success(function(data) {
                 $scope.trips = data;
                 $scope.selectedTrip = $scope.trips[0];

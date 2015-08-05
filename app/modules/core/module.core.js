@@ -14,10 +14,10 @@
         baseApiPath : baseApiPath,
         services: {
             eventbus: "eventbus",
-            tournamentSelection : "tournamentSelection"
+            tripsSelection : "tripsSelection"
         },
         events : {
-            tournamentChanged : "tournamentChanged"
+            tripChanged : "tripChanged"
         },
         api: {
             expenses: apiPath + "/crewexpenses/"

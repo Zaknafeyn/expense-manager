@@ -1,11 +1,11 @@
 (function (angular, jcs) {
     'use strict';
-
-
+    
     angular.module(jcs.modules.app.name).run([
         '$rootScope',
-        function ($rootScope) {
-            console.log("app.run");
+        '$log',
+        function ($rootScope, $log) {
+            $log.debug("app.run");
         }]);
 
 }(angular, jcs));

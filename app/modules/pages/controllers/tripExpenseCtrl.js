@@ -7,7 +7,7 @@
             '$http',
             '$log',
             jcs.modules.core.services.eventbus,
-            jcs.modules.core.services.tournamentSelection,
+            jcs.modules.core.services.tripsSelection,
             function ($scope, $http, $log, eventbus, tournamentSelection) {
                 var name = "tripExpense";
                 $scope.pageHeader = "Trip expenses";
@@ -80,22 +80,22 @@
                         carCrewRefId : 1
                     });
                 };
-                ////$log.debug("URL tournaments:" + jcs.modules.pages.api.tournaments);
-                //$http.get(jcs.modules.pages.api.tournaments).
+                ////$log.debug("URL trips:" + jcs.modules.pages.api.trips);
+                //$http.get(jcs.modules.pages.api.trips).
                 //    success(function(data, status, headers, config) {
-                //        $scope.tournaments = data;
-                //        $scope.selectedTrip = $scope.tournaments[0];
+                //        $scope.trips = data;
+                //        $scope.selectedTrip = $scope.trips[0];
                 //    }).
                 //    error(function(data, status, headers, config) {
                 //        // log error
-                //        $log.error("Error retrieving tournaments data");
+                //        $log.error("Error retrieving trips data");
                 //    });
 
                 /* event handlers
                 * ---------------
                 */
-                eventbus.subscribe(jcs.modules.core.events.tournamentChanged, function(oldTournamentId, newTournamentId){
-                    //tournamentSelection.getExpenses(1)
+                eventbus.subscribe(jcs.modules.core.events.tripChanged, function(oldTournamentId, newTournamentId){
+                    //tripsSelection.getExpenses(1)
                     //    .then(function(expenses) {
                     //        $scope.expenses = {
                     //            crewId : 1,

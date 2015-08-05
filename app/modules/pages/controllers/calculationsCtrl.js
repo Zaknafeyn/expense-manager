@@ -5,13 +5,14 @@
         .controller(jcs.modules.pages.controllers.calculations, [
             '$scope',
             '$http',
-            function ($scope, $http) {
+            '$log',
+            function ($scope, $http, $log) {
                 var name = "calculations";
                 $scope.pageHeader = "Calculations";
 
                 jcs.modules.pages.common.getMenu(name, $http, function(list){
                     $scope.menuItems = list;
-                    console.log($scope.menuItems);
+                    $log.debug($scope.menuItems);
                 });
             }
         ]);
